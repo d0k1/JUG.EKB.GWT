@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>10 человеко-лет GWT</title>
+
+		<meta name="description" content="Presentation about Google Web Toolkit pros and cons">
+		<meta name="author" content="Denis V. Kirpichenkov">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+
+		<link rel="stylesheet" href="css/hljs/vs.css" id="highlight-theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+.reveal pre {
+	background: none;
+	border: none;
+	box-shadow: none;	
+}
+
+.reveal pre code{
+	color: black;
+	background: none;
+	box-shadow: none;
+}
+
+.reveal section img {
+	border: none;
+	box-shadow: none;
+}
+
+.reveal pre code {
+	overflow: hidden;
+}
+
+.blinking-cursor {
+  font-weight: 100;
+  font-size: 30px;
+  color: #2E3D48;
+  width:10px;
+  background-color:black;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    background-color:white;
+    color: transparent;
+  }
+  50% {
+    color: black;
+    background-color:black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    background-color:white;
+    color: transparent;
+  }
+  50% {
+    color: black;
+    background-color:black;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    background-color:white;
+    color: transparent;
+  }
+  50% {
+    color: black;
+    background-color:black;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    background-color:white;
+    color: transparent;
+  }
+  50% {
+    color: black;
+    background-color:black;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    background-color:white;
+    color: transparent;
+  }
+  50% {
+    color: black;
+    background-color:black;
+  }
+}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>10 Человеко-лет GWT</h1>
+					<p>
+						<small><a href="http://focus-it.ru">Кирпиченков Денис</a> / <a href="http://twitter.com/dkirpichenkov">@dkirpichenkov</a></small>
+					</p>
+				</section>
+				<section>
+					<h2>Web frameworks. v2009</h2>
+					<img src="img/2009.png" />
+				</section>
+				
+				<section>
+					<h2>GWT or not GWT</h2>
+					<img src="img/the-choice-we-faced.jpg">
+				</section>
+
+				<section>
+					<h2>Java everywhere</h2>
+					<img style="vertical-align:middle; border:none" src="img/java.jpg">
+				</section>
+
+				<section>
+					<h2>Every browser rocks</h2>
+					<img style="vertical-align:middle; border:none" src="img/browsers.jpg"/>
+				</section>
+
+				<section>
+					<h2>Fast &amp; Furious</h2>
+					<img style="vertical-align:middle; border:none" src="img/fast_and_furiuos.jpg"/>
+				</section>
+
+				<section>
+					<h2><q>"I show you how deep the rabbit hole goes"</q></h2>
+					<img src="img/red-pill.jpg" />
+				</section>
+
+				<section>
+					<h2>GWT App Architecture</h2>
+					<img src="img/gwt_arch.png"/>
+				</section>
+
+				<section>
+					<h2>Google Gin</h2>
+					<ul>
+						<li class="fragment" class="stretch">
+							AbstractGinModule
+<pre><code data-trim class="java">public class AGinModule 
+extends AbstractGinModule {
+  @Override
+  protected void configure() {
+    bind(EventBus.class)
+    .to(SimpleEventBus.class).in(Singleton.class);  	
+  }
+}
+</code></pre>
+						</li>
+						<li class="fragment">
+							Injector
+<pre><code data-trim class="java">@GinModules({AGinModule.class})
+public interface HelloGinjector extends Ginjector {      
+  EventBus getEventBus();
+}
+</code></pre>
+						</li>
+						<li class="fragment">
+							@Inject everywhere
+<pre><code data-trim class="java">@javax.inject.Inject
+EventBus bus;
+</code></pre>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Publish/Subscriber</h2>
+					<img class="stretch" src="img/eventbus2.png"/>
+				</section>
+
+				<section>
+					<h2>MVP</h2>
+					<img class="stretch" src="img/mvp.png">
+				</section>
+
+				<section>
+					<h2>All together</h2>	
+					<img class="stretch" src="img/application.png"/>
+				</section>
+
+				<section>
+					<h2>RPC Services</h2>
+					<ul>
+						<li class="fragment">Client Interface
+<pre><code data-trim class="java">@RemoteServiceRelativePath("greet")
+public interface GreetingService extends RemoteService {       
+  String greetServer(String name);
+}</code></pre>
+					</li>
+						<li class="fragment">Internal Interface
+<pre><code data-trim class="java">public interface GreetingServiceAsync {      
+   void greetServer(String name, AsyncCallback&lt;String&gt; callback);			
+}</code></pre>
+					</li>
+						<li class="fragment">Server-side implementation
+<pre><code data-trim class="java">public class GreetingServiceImpl extends RemoteServiceServlet 
+	implements GreetingService {
+  public String greetServer(String input)					
+}
+</code></pre>
+					</li>
+				</ul>
+				</section>
+
+				<section>
+					<h2>Server Side. GWT WAY</h2>
+					<img class="stretch" src="img/gwtservices.png"/>
+				</section>
+
+				<section>
+					<h2>Command in action</h2>
+					<img class="stretch" src="img/actiondispatch.png"/>
+				</section>
+
+				<section>
+					<h2>GWT PRC is about serialization</h2>
+					<img class="stretch" src="img/rpc.png"/>
+				</section>
+
+				<section>
+					<h2>GWT RPC Payload</h2>
+					<p>
+					Request:
+					<img src="img/rpc_request_payload.png"/>
+					</p>
+					<p>
+					Response:
+					<img src="img/rpc_response_payload.png"/>
+					</p>
+				</section>
+
+				<section>
+					<h2>Альтернативы</h2>
+					<ul>
+						<li>RequestBuilder + JSON</li>
+						<li>REST. <a href="https://resty-gwt.github.io/">https://resty-gwt.github.io/</a></li>
+						<li>Apache Thrift. <a href="https://thrift.apache.org/">https://thrift.apache.org/</a>
+						</li>
+					</ul>
+					<p>
+					Thrift request
+					</p>					
+					<img src="img/thrift_request.png"/>
+					<p>
+					Thrift response
+					</p>
+					<img src="img/thrift_response.png"/>
+				</section>
+
+				<section>
+					<h2>GWT модули</h2>
+					<p>app.gwt.xml
+<pre><code data-trim class="xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='jugsample'>
+
+  <!-- Inherit the core Web Toolkit stuff.                    -->
+  <inherits name='com.google.gwt.user.User'>
+  </inherits>
+
+  <inherits name='com.google.gwt.user.theme.standard.Standard'>
+  </inherits>
+</module>
+</code></pre></p>
+				</section>
+
+				<section>
+					<h2>GWT модули</h2>
+					<p>app.gwt.xml
+<pre><code data-trim class="xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='jugsample'>
+
+  <replace-with 
+  class="com.google.g.u.c.ui.impl.PopupImplIE6">			
+  
+    <when-type-is 
+    class="com.google.g.u.c.ui.impl.PopupImpl">
+    </when-type-is>
+  
+    <when-property-is name="user.agent" value="ie6">
+    </when-property-is>
+  
+  </replace-with>
+</module>
+
+
+</code></pre></p>
+				</section>
+
+				<section>
+					<h2>GWT модули</h2>
+					<p>app.gwt.xml
+<pre><code data-trim class="xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='jugsample'>
+
+<generate-with class="com.focusit.CompositeGenerator"> 
+
+   <when-type-assignable class="com.google.g.u.c.ui.Composite">
+   </when-type-assignable>
+
+</generate-with>
+
+</module>
+</code></pre></p>
+				</section>
+				
+				<section>
+					<img class="stretch" src="img/templatedcomposite.png" style="border: none;">
+				</section>
+				
+				<section>
+					<h2>GWT &#x21cb; Javascript</h2>
+					<ul>
+						<li class="fragment">Вызов JS
+<pre><code data-trim class="java">public static native void alert(String msg) /*-{
+  $wnd.alert(msg);
+}-*/;</code></pre>
+					</li>
+						<li class="fragment">Вызов GWT кода из JS
+<pre><code data-trim class="java">public MyUtilityClass{ 
+  public static int computeLoanInterest(int amt, 	
+	float interestRate, int term)
+  {
+  } 
+
+  public static native void exportStaticMethod() 	
+  /*-{ 
+    $wnd.computeLoanInterest = 
+    $entry(@mypackage.MyUtilityClass::computeLoanInterest(IFI));		
+    }-*/;
+  }</code></pre>
+					</li>
+				</ul>
+
+				</section>
+
+				<section>
+					<img class="stretch" src="img/eventbusjs.png">
+				</section>
+
+				<section>
+					<h2>Build process</h2>
+					<img class="stretch" src="img/compiling.jpg"/>
+				</section>
+
+				<section>
+					<h2>GWT Debugging</h2>
+					<img class="stretch" src="img/superdevmode.png"/>
+				</section>
+
+				<section>
+					<h2>Super Dev Mode Debug</h2>
+					<img class="stretch" src="img/superdevdebug.png"/>
+				</section>
+
+				<section>
+					<h2>Super Dev Mode Debug cont.</h2>
+					<img class="stretch" src="img/superdevmode_js_debug.png"/>
+				</section>
+
+				<section>
+					<h2>When something went wrong</h2>
+					<img src="img/something_went_wrong.png"/>
+				</section>
+				<section>
+					<h2>Обработка unhandled exception</h2>
+<pre><code>public class Example implements EntryPoint {
+ public void onModuleLoad() {
+   GWT.setUncaughtExceptionHandler(new 
+   		GWT.UncaughtExceptionHandler(){			
+     	  	   public void onUncaughtException(Throwable e)
+     	  	   {
+     	  	      // Обработка исключения
+     	  	      // Вывод в консоль браузера
+     	  	      // Отправка на сервер для записи в Log
+     	  	   }
+   });
+ }
+}</code></pre>
+				</section>
+				
+				<section>
+					<h2>Как выглядит исключение</h2>
+					<img class="stretch" src="img/unhandled.png"/>
+					<img class="stretch" src="img/unhandled_remote.png"/>
+				</section>
+
+				<section>
+					<h2>Разбор исключения</h2>
+					<img class="stretch" src="img/unhandled_stack.png"/>
+				</section>
+
+				<section>
+					<h2>Получение stack'а ошибки </h2>
+					<p>
+						SymbolMaps
+<pre>
+├── rpcPolicyManifest
+│   ├── manifests
+│   │   ├── 00B81EDF1ED878A9499F77A6BD72F97F.txt
+│   │   ├── 27129259FF55ECBA1F313FA0BADCBA06.txt
+│   │   └── CC6E72C03242CD463A2772C4EB4319A3.txt
+│   └── manifest.txt
+└── symbolMaps
+    ├── 13210C7473C45016FBFC764429C5C72E.symbolMap
+    ├── 3E4B428A471EFD1DC803630D26A049E0.symbolMap
+    ├── 404EF130736C6AC4DE2BD3A75256BD93.symbolMap
+    ├── 62BE5A8854B6B01F24C28CAAF8042C17.symbolMap
+    ├── 748D3FC843595E743A328BC78E15A9C1.symbolMap
+    ├── 8ADFAB542FFF497459382D8182742EC4.symbolMap
+    ├── 8DD9F56074FF19AFDD37F4A9273CC6F6.symbolMap
+    ├── 9770311386402AEAA5B61BFAF6D8B0BD.symbolMap
+    ├── C4F82D4876541A04B1F97B261F3D6517.symbolMap
+    └── D6682ADEC5C101DDB41DDA2392DBD6AF.symbolMap
+</pre>
+					</p>
+				</section>
+
+				<section>
+					<h2>Более понятный Stack</h2>
+					<img class="stretch" src="img/unhandled_stack_ready.png"/>
+				</section>
+
+				<section>
+					<img src="img/adsense.jpg"/>
+					<img src="img/adwords.png"/>
+					<img src="img/evernote.png"/>
+					<img src="img/inboxlogo.png"/>
+					<p>
+					<a href="https://vaadin.com/home">Vaadin</a>
+					<a href="http://erraiframework.org/">Errai</a>
+					</p>
+				</section>
+
+				<section>
+					<h1>Q &amp; A &nbsp;?<span class="blinking-cursor">||</span></h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
