@@ -4,5 +4,5 @@ Talk about one GWT-based project. What was wrong, what was right, how to get bet
 ## Slides
 https://d0k1.github.io/JUG.EKB.GWT/#/
 
-## video
+## Video
 https://www.youtube.com/watch?v=rnOvqvydp0Y
